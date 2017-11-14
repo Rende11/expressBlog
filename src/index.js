@@ -1,9 +1,12 @@
 import Express from 'express';
 import bodyParser from 'body-parser';
+import morgan from 'morgan';
 
 //import Post from './entities/Post';
 
 export default () => {
+  const logger = morgan('tiny');
+
   const app = new Express();
 
   app.set('view engine', 'pug');
@@ -16,7 +19,8 @@ export default () => {
   ];
   */
   app.get('/', (req, res) => {
-          res.send('index');
+    const data = { title: "Hello PUG", message: "Hello again!" };
+    res.render('index', data);
   });
 
   return app;
